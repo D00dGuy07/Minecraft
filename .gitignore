@@ -338,3 +338,10 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/bin-int
+/Dependencies/Glad/bin-int
+/Dependencies/GLFW/bin-int
+/Dependencies/GLFW/docs
+/Dependencies/GLFW/examples
+/Dependencies/GLFW/tests
+/Minecraft/src/Backups.zip
