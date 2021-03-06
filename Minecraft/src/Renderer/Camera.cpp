@@ -57,6 +57,11 @@ void Camera::m_UpdateProjectionMatrix()
 		m_Projection = glm::perspective(glm::radians(m_FOV), aspectRatio, m_ClipNear, m_ClipFar);
 		glViewport(0, 0, m_WindowWidth, m_WindowHeight);
 	}
+	else if (m_ShouldUpdateProjection)
+	{
+		float aspectRatio = (float)m_WindowWidth / (float)m_WindowHeight;
+		m_Projection = glm::perspective(glm::radians(m_FOV), aspectRatio, m_ClipNear, m_ClipFar);
+	}
 }
 
 glm::vec2 Camera::m_CalculateMouseOffset()

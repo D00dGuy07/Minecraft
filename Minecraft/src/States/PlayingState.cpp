@@ -5,13 +5,13 @@
 // Renderer Includes
 #include "Shader.h"
 #include "Texture.h"
-#include "TextureAtlas.h"
 #include "Renderer.h"
 
 #include "Mesh.h"
 #include "Chunk.h"
-#include "ChunkMeshGenerator.h"
-#include "RenderInfo.h"
+#include <vector>
+
+#include "ChunkManager.h"
 
 void PlayingState::load(GLFWwindow* window)
 {
@@ -20,7 +20,7 @@ void PlayingState::load(GLFWwindow* window)
 	glfwSetKeyCallback(window, PlayingState::key_callback);
 
 	// Setup Camera
-	m_Camera = new Camera(window, glm::vec3(0, 0, 2), glm::vec3(0, 0, -1), 10, 75.0f, 0.1f, 100.0f);
+	m_Camera = new Camera(window, glm::vec3(0, 45, 0), glm::vec3(0.5f, 0.0f, 0.5f), 10, 75.0f, 0.1f, 500.0f);
 
 	// Enable Blending
 	glEnable(GL_BLEND);
@@ -35,45 +35,16 @@ void PlayingState::load(GLFWwindow* window)
 
 	// Setup OpenGL data for quad
 	
-	m_Shader = std::shared_ptr<Shader>(
-		new Shader("res/shaders/Cube.shader")
-	);
+	m_Shader = new Shader("res/shaders/Cube.shader");
 
 	m_Texture = new Texture("res/textures/texture-atlas.png", GL_NEAREST);
 
 	m_Shader->SetUniform1i("u_Texture", 0);
 
 	// Build chunk mesh
+	m_ChunkManager = new ChunkManager();
 
-	m_Chunk = new Chunk();
-
-	for (int y = 0; y < 16; y++)
-	{
-		for (int z = 0; z < 16; z++)
-		{
-			for (int x = 0; x < 16; x++)
-			{
-				if (y == 15)
-				{
-					m_Chunk->setBlock(1, x, y, z);
-				}
-				else if (y > 11 && y < 15)
-				{
-					m_Chunk->setBlock(2, x, y, z);
-				}
-				else if (y < 12)
-				{
-					m_Chunk->setBlock(3, x, y, z);
-				}
-			}
-		}
-	}
-
-	std::shared_ptr<Mesh> mesh = ChunkMeshGenerator::generateChunkMesh(*m_Chunk);
-
-	m_RenderInfo = new RenderInfo(mesh, m_Shader);
-
-	m_Model = new glm::mat4(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)));
+	m_ChunkManager->GenerateTerrain();
 
 	std::cout << "Playing state has been loaded!" << std::endl;
 }
@@ -87,9 +58,22 @@ GameStateMessage PlayingState::loop(GLFWwindow* window)
 	
 	m_Texture->Bind();
 
-	m_Shader->SetUniformMat4f("u_MVP", view * *m_Model);
+	m_Shader->SetUniformMat4f("u_MVP", view);
 
-	renderer.Draw(*m_RenderInfo);
+	if (m_ChunkManager->NeedsGenerating())
+	{
+		m_ChunkManager->GenerateMeshes();
+	}
+
+	std::vector<Mesh*> meshes = m_ChunkManager->GetMeshes();
+
+	for (Mesh* mesh : meshes)
+	{
+		if (mesh->isVAOBuilt())
+		{
+			renderer.Draw(*mesh, *m_Shader);
+		}
+	}
 
 	if (m_ShouldCrash) {
 		m_ShouldCrash = false;
@@ -109,9 +93,8 @@ void PlayingState::close(GLFWwindow* window)
 	delete m_Camera;
 	delete m_Texture;
 
-	delete m_Chunk;
-	delete m_Model;
-	delete m_RenderInfo;
+	delete m_Shader;
+	delete m_ChunkManager;
 
     std::cout << "Playing state has been closed!" << std::endl;
 }
@@ -132,7 +115,11 @@ void PlayingState::keyEvent(GLFWwindow* window, int key, int scancode, int actio
 	}
 	else if (key == GLFW_KEY_C && action == GLFW_PRESS)
 	{
-		m_ShouldCrash = true;
+		m_Camera->SetFOV(20.0f);
+	}
+	else if (key == GLFW_KEY_C && action == GLFW_RELEASE)
+	{
+		m_Camera->SetFOV(75.0f);
 	}
 	else if (key == GLFW_KEY_R && action == GLFW_PRESS)
 	{

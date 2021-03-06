@@ -345,3 +345,5 @@ healthchecksdb
 /Dependencies/GLFW/examples
 /Dependencies/GLFW/tests
 /Minecraft/src/Backups.zip
+/Dependencies/FastNoise2/bin-int
+/Dependencies/FastNoise2/src/FastSIMD/Example

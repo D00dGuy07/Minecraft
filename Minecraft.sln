@@ -4,41 +4,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Minecraft", "Minecraft\Minecraft.vcxproj", "{08AA2448-E054-44A2-B35D-37DC7E5032A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984} = {C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}
+		{705DB0A5-F904-44D6-B262-0ED0E5B181CC} = {705DB0A5-F904-44D6-B262-0ED0E5B181CC}
+		{02B8E3D3-A647-4C89-A20D-930FF1415DAE} = {02B8E3D3-A647-4C89-A20D-930FF1415DAE}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{4FE35005-8DE9-49B2-8B39-D59C8605C6A7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "Dependencies\GLFW\GLFW.vcxproj", "{705DB0A5-F904-44D6-B262-0ED0E5B181CC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Glad", "Dependencies\GLAD\GLAD.vcxproj", "{02B8E3D3-A647-4C89-A20D-930FF1415DAE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Glad", "Dependencies\Glad\GLAD.vcxproj", "{02B8E3D3-A647-4C89-A20D-930FF1415DAE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FastNoise2", "Dependencies\FastNoise2\FastNoise2.vcxproj", "{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{08AA2448-E054-44A2-B35D-37DC7E5032A7}.Debug|x64.ActiveCfg = Debug|x64
 		{08AA2448-E054-44A2-B35D-37DC7E5032A7}.Debug|x64.Build.0 = Debug|x64
-		{08AA2448-E054-44A2-B35D-37DC7E5032A7}.Debug|x86.ActiveCfg = Debug|x64
 		{08AA2448-E054-44A2-B35D-37DC7E5032A7}.Release|x64.ActiveCfg = Release|x64
 		{08AA2448-E054-44A2-B35D-37DC7E5032A7}.Release|x64.Build.0 = Release|x64
-		{08AA2448-E054-44A2-B35D-37DC7E5032A7}.Release|x86.ActiveCfg = Release|x64
 		{705DB0A5-F904-44D6-B262-0ED0E5B181CC}.Debug|x64.ActiveCfg = Debug|x64
 		{705DB0A5-F904-44D6-B262-0ED0E5B181CC}.Debug|x64.Build.0 = Debug|x64
-		{705DB0A5-F904-44D6-B262-0ED0E5B181CC}.Debug|x86.ActiveCfg = Debug|x64
 		{705DB0A5-F904-44D6-B262-0ED0E5B181CC}.Release|x64.ActiveCfg = Release|x64
 		{705DB0A5-F904-44D6-B262-0ED0E5B181CC}.Release|x64.Build.0 = Release|x64
-		{705DB0A5-F904-44D6-B262-0ED0E5B181CC}.Release|x86.ActiveCfg = Release|x64
 		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Debug|x64.ActiveCfg = Debug|x64
 		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Debug|x64.Build.0 = Debug|x64
-		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Debug|x86.ActiveCfg = Debug|Win32
-		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Debug|x86.Build.0 = Debug|Win32
 		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Release|x64.ActiveCfg = Release|x64
 		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Release|x64.Build.0 = Release|x64
-		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Release|x86.ActiveCfg = Release|Win32
-		{02B8E3D3-A647-4C89-A20D-930FF1415DAE}.Release|x86.Build.0 = Release|Win32
+		{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}.Debug|x64.ActiveCfg = Debug|x64
+		{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}.Debug|x64.Build.0 = Debug|x64
+		{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}.Release|x64.ActiveCfg = Release|x64
+		{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{705DB0A5-F904-44D6-B262-0ED0E5B181CC} = {4FE35005-8DE9-49B2-8B39-D59C8605C6A7}
 		{02B8E3D3-A647-4C89-A20D-930FF1415DAE} = {4FE35005-8DE9-49B2-8B39-D59C8605C6A7}
+		{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984} = {4FE35005-8DE9-49B2-8B39-D59C8605C6A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3DA402F-3746-4FA8-B14F-062B84D9FA9E}

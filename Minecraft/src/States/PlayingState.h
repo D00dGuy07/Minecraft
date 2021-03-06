@@ -9,11 +9,12 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 // Renderer Classes
-class Mesh;
+//class Mesh;
 class Shader;
 class Texture;
-struct Chunk;
-struct RenderInfo;
+class ChunkManager;
+//struct Chunk;
+//struct RenderInfo;
 
 
 class PlayingState : public GameState 
@@ -28,13 +29,15 @@ public:
 private:
 	Camera* m_Camera;
 	
-	std::shared_ptr<Shader> m_Shader;
+	Shader* m_Shader;
 	Texture* m_Texture;
 
-	Chunk* m_Chunk;
-	RenderInfo* m_RenderInfo;
+	//Chunk* m_Chunk;
+	//RenderInfo* m_RenderInfo;
 
-	glm::mat4* m_Model;
+	//glm::mat4* m_Model;
+
+	ChunkManager* m_ChunkManager;
 
 	bool m_ShouldCrash = false;
 	bool m_WireFrame = false;

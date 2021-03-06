@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "RenderInfo.h"
+#include "Mesh.h"
 
 void Renderer::Clear()
 {
@@ -10,11 +10,11 @@ void Renderer::Clear()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::Draw(RenderInfo& renderInfo)
+void Renderer::Draw(Mesh& mesh, Shader& shader)
 {
-    renderInfo.Shader->Bind();
-    unsigned int count = renderInfo.Mesh->Bind();
+    shader.Bind();
+    unsigned int count = mesh.Bind();
     glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
-    renderInfo.Mesh->Unbind();
-    renderInfo.Shader->Unbind();
+    mesh.Unbind();
+    shader.Unbind();
 }

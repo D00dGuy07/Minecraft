@@ -66,9 +66,24 @@ void DataLoader::LoadBlocks()
 		}
 	});
 
-	// Unkown Voxel Data
+	// Sand Voxel Data
 	BlockData::addBlock({
 		4,
+		MeshType::CUBE,
+		false,
+		{
+			glm::vec2(5.0f, 0.0f),
+			glm::vec2(5.0f, 0.0f),
+			glm::vec2(5.0f, 0.0f),
+			glm::vec2(5.0f, 0.0f),
+			glm::vec2(5.0f, 0.0f),
+			glm::vec2(5.0f, 0.0f),
+		}
+	});
+
+	// Unkown Voxel Data
+	BlockData::addBlock({
+		5,
 		MeshType::CUBE,
 		false,
 		{

@@ -4,7 +4,6 @@
 #include "Mesh.h"
 
 #include <cstdint>
-#include <memory>
 
 enum class FaceType
 {
@@ -26,12 +25,22 @@ struct SurroundingBlocks
 	uint16_t Bottom;
 };
 
+struct SurroundingChunks
+{
+	Chunk* Front;
+	Chunk* Back;
+	Chunk* Left;
+	Chunk* Right;
+	Chunk* Top;
+	Chunk* Bottom;
+};
+
 class ChunkMeshGenerator
 {
 public:
-	static std::shared_ptr<Mesh> generateChunkMesh(const Chunk& chunk);
+	static bool generateChunkMesh(Mesh& mesh, const Chunk& chunk, SurroundingChunks surroundingChunks, int chunkX, int chunkY, int chunkZ);
 private:
-	static SurroundingBlocks getSurroundingBlocks(const int& x, const int& y, const int& z, const Chunk& chunk);
+	static SurroundingBlocks getSurroundingBlocks(const int& x, const int& y, const int& z, const Chunk& chunk, const SurroundingChunks& surroundingChunks);
 	static void addFace(
 		float x, float y, float z, 
 		FaceType face, 

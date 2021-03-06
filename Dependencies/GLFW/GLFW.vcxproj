@@ -52,7 +52,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>bin\Release-windows-x86_64\GLFW\</OutDir>
     <IntDir>bin-int\Release-windows-x86_64\GLFW\</IntDir>
-    <TargetName>GLFW</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

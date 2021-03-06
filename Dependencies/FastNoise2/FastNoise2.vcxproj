@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\FastNoise\FastNoiseMetadata.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_AVX2.cpp">
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AdvancedVectorExtensions</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_AVX512.cpp">
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AdvancedVectorExtensions512</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AdvancedVectorExtensions512</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_NEON.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_Scalar.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_SSE2.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_SSE3.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_SSE41.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_SSE42.cpp" />
+    <ClCompile Include="src\FastSIMD\FastSIMD_Level_SSSE3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\FastNoise\FastNoise.h" />
+    <ClInclude Include="include\FastNoise\FastNoiseMetadata.h" />
+    <ClInclude Include="include\FastNoise\FastNoise_Config.h" />
+    <ClInclude Include="include\FastNoise\Generators\BasicGenerators.h" />
+    <ClInclude Include="include\FastNoise\Generators\Blends.h" />
+    <ClInclude Include="include\FastNoise\Generators\Cellular.h" />
+    <ClInclude Include="include\FastNoise\Generators\DomainWarp.h" />
+    <ClInclude Include="include\FastNoise\Generators\DomainWarpFractal.h" />
+    <ClInclude Include="include\FastNoise\Generators\Fractal.h" />
+    <ClInclude Include="include\FastNoise\Generators\Generator.h" />
+    <ClInclude Include="include\FastNoise\Generators\Modifiers.h" />
+    <ClInclude Include="include\FastNoise\Generators\Perlin.h" />
+    <ClInclude Include="include\FastNoise\Generators\Simplex.h" />
+    <ClInclude Include="include\FastNoise\Generators\Value.h" />
+    <ClInclude Include="include\FastSIMD\FastSIMD.h" />
+    <ClInclude Include="include\FastSIMD\FastSIMD_Config.h" />
+    <ClInclude Include="include\FastSIMD\FunctionList.h" />
+    <ClInclude Include="include\FastSIMD\InlInclude.h" />
+    <ClInclude Include="include\FastSIMD\SIMDTypeList.h" />
+    <ClInclude Include="include\glad\glad.h" />
+    <ClInclude Include="src\FastNoise\Base64.h" />
+    <ClInclude Include="src\FastSIMD\Internal\AVX.h" />
+    <ClInclude Include="src\FastSIMD\Internal\AVX512.h" />
+    <ClInclude Include="src\FastSIMD\Internal\NEON.h" />
+    <ClInclude Include="src\FastSIMD\Internal\Scalar.h" />
+    <ClInclude Include="src\FastSIMD\Internal\SSE.h" />
+    <ClInclude Include="src\FastSIMD\Internal\VecTools.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\FastNoise\FastNoise_BuildList.inl" />
+    <None Include="include\FastNoise\Generators\BasicGenerators.inl" />
+    <None Include="include\FastNoise\Generators\Blends.inl" />
+    <None Include="include\FastNoise\Generators\Cellular.inl" />
+    <None Include="include\FastNoise\Generators\DomainWarp.inl" />
+    <None Include="include\FastNoise\Generators\DomainWarpFractal.inl" />
+    <None Include="include\FastNoise\Generators\Fractal.inl" />
+    <None Include="include\FastNoise\Generators\Generator.inl" />
+    <None Include="include\FastNoise\Generators\Modifiers.inl" />
+    <None Include="include\FastNoise\Generators\Perlin.inl" />
+    <None Include="include\FastNoise\Generators\Simplex.inl" />
+    <None Include="include\FastNoise\Generators\Utils.inl" />
+    <None Include="include\FastNoise\Generators\Value.inl" />
+    <None Include="src\FastSIMD\FastSIMD_BuildList.inl" />
+    <None Include="src\FastSIMD\Internal\SourceBuilder.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{C9FEA31D-F365-4CDC-9E6F-226B7EA0A984}</ProjectGuid>
+    <RootNamespace>GLAD</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>FastNoise2</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\Debug-windows-x86_64\FastNoise2\</OutDir>
+    <IntDir>bin-int\Debug-windows-x86_64\FastNoise2\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\Release-windows-x86_64\FastNoise2\</OutDir>
+    <IntDir>bin-int\Release-windows-x86_64\FastNoise2\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

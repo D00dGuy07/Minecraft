@@ -4,13 +4,13 @@
 
 #include "Shader.h"
 
-#define ASSERT(x) if (!(x)) __debugbreak();
+class Mesh;
 
-struct RenderInfo;
+#define ASSERT(x) if (!(x)) __debugbreak();
 
 class Renderer
 {
 public:
     static void Clear();
-    void Draw(RenderInfo& renderInfo);
+    void Draw(Mesh& mesh, Shader& shader);
 };

@@ -13,6 +13,8 @@ public:
 	glm::mat4 UpdateCamera();
 	glm::mat4 GetViewMat() const { return m_Projection * m_Matrix; }
 
+	void SetFOV(float fov) { m_FOV = fov; m_ShouldUpdateProjection = true; }
+
 	void ResetMousePos();
 
 	void UpdateKeyStates(int key, int action);
@@ -47,6 +49,8 @@ private:
 	double m_MouseY = 0;
 
 	// Projection Matrix stuff
+
+	bool m_ShouldUpdateProjection;
 
 	float m_FOV;
 	float m_ClipNear;

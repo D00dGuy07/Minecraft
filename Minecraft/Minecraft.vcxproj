@@ -59,13 +59,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\FastNoise2\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Glad\bin\Debug-windows-x86_64\Glad;$(SolutionDir)Dependencies\GLFW\bin\Debug-windows-x86_64\GLFW</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Glad.lib;GLFW.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\FastNoise2\bin\Debug-windows-x86_64\FastNoise2;$(SolutionDir)Dependencies\Glad\bin\Debug-windows-x86_64\Glad;$(SolutionDir)Dependencies\GLFW\bin\Debug-windows-x86_64\GLFW</AdditionalLibraryDirectories>
+      <AdditionalDependencies>FastNoise2.lib;Glad.lib;GLFW.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -76,15 +77,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\FastNoise2\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Glad.lib;GLFW.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\Glad\bin\Release-windows-x86_64\Glad;$(SolutionDir)Dependencies\GLFW\bin\Release-windows-x86_64\GLFW</AdditionalLibraryDirectories>
+      <AdditionalDependencies>FastNoise2.lib;Glad.lib;GLFW.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\FastNoise2\bin\Release-windows-x86_64\FastNoise2;$(SolutionDir)Dependencies\Glad\bin\Release-windows-x86_64\Glad;$(SolutionDir)Dependencies\GLFW\bin\Release-windows-x86_64\GLFW</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -104,8 +106,9 @@
     <ClCompile Include="src\States\PlayingState.cpp" />
     <ClCompile Include="src\States\StateManager.cpp" />
     <ClCompile Include="src\Utility\Time.cpp" />
+    <ClCompile Include="src\World\Chunk\ChunkManager.cpp" />
     <ClCompile Include="src\World\Chunk\ChunkMeshGenerator.cpp" />
-    <ClCompile Include="vendor\FastNoise\FastNoise.cpp" />
+    <ClCompile Include="src\World\Chunk\TerrainGenerator.cpp" />
     <ClCompile Include="vendor\glm\detail\glm.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
@@ -114,7 +117,6 @@
     <ClInclude Include="src\Data\DataLoader.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Models\Mesh.h" />
-    <ClInclude Include="src\Models\RenderInfo.h" />
     <ClInclude Include="src\Renderer\Camera.h" />
     <ClInclude Include="src\Renderer\TextureAtlas.h" />
     <ClInclude Include="src\Renderer\IndexBuffer.h" />
@@ -129,8 +131,9 @@
     <ClInclude Include="src\States\StateManager.h" />
     <ClInclude Include="src\Utility\Time.h" />
     <ClInclude Include="src\World\Chunk\Chunk.h" />
+    <ClInclude Include="src\World\Chunk\ChunkManager.h" />
     <ClInclude Include="src\World\Chunk\ChunkMeshGenerator.h" />
-    <ClInclude Include="vendor\FastNoise\FastNoise.h" />
+    <ClInclude Include="src\World\Chunk\TerrainGenerator.h" />
     <ClInclude Include="vendor\glm\common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_vector_relational.hpp" />

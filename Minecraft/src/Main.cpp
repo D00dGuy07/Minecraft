@@ -45,10 +45,10 @@ int main(void)
 	if (!status)
 		std::cout << "Failed to load Glad!" << std::endl;
 
+	glDebugMessageCallback(openglErrorCallback, nullptr);
+
 	std::cout << glGetString(GL_VERSION) << "\n";
 	std::cout << glGetString(GL_RENDERER) << "\n\n";
-
-	glDebugMessageCallback(openglErrorCallback, nullptr);
 
 	glfwSetWindowSizeLimits(window, 100, 100, GLFW_DONT_CARE, GLFW_DONT_CARE);
 

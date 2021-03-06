@@ -1,12 +1,12 @@
 #include "Shader.h"
 
+#include "glad/glad.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <iterator>
-
-#include "Renderer.h"
 
 Shader::Shader(const std::string& filepath)
 	: m_FilePath(filepath), m_RendererID(0)
@@ -183,24 +183,28 @@ int Shader::GetUniformLocation(const std::string& name)
 
 void Shader::SetUniforms()
 {
+	// int
 	for (auto i : m_Uniform1iCache)
 	{
 		glUniform1i(GetUniformLocation(i.first), i.second);
 	}
 	m_Uniform1iCache.clear();
 
+	// float
 	for (auto i : m_Uniform1fCache)
 	{
 		glUniform1f(GetUniformLocation(i.first), i.second);
 	}
 	m_Uniform1fCache.clear();
 
+	// vec4
 	for (auto i : m_Uniform4fCache)
 	{
 		glUniform4f(GetUniformLocation(i.first), i.second.x, i.second.y, i.second.z, i.second.w);
 	}
 	m_Uniform4fCache.clear();
 
+	// mat4
 	for (auto i : m_UniformMat4Cache)
 	{
 		glUniformMatrix4fv(GetUniformLocation(i.first), 1, GL_FALSE, &i.second[0][0]);
