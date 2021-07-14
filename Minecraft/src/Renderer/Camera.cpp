@@ -3,7 +3,7 @@
 #include "GLFW/glfw3.h"
 #include <glad/glad.h>
 
-#include "Time.h"
+#include "TimeUtil.h"
 #include <iostream>
 
 #define _USE_MATH_DEFINES

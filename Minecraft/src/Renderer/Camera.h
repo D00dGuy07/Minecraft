@@ -15,6 +15,11 @@ public:
 
 	void SetFOV(float fov) { m_FOV = fov; m_ShouldUpdateProjection = true; }
 
+	float GetSpeed() const { return m_Speed; }
+	glm::vec3 GetPos() const { return m_Position; }
+	
+	void SetSpeed(float speed) { m_Speed = speed; }
+
 	void ResetMousePos();
 
 	void UpdateKeyStates(int key, int action);

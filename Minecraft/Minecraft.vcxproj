@@ -59,8 +59,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\FastNoise2\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
-      <LanguageStandard>Default</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\dev\boost_1_76_0;src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\FastNoise2\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -77,8 +77,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\FastNoise2\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
-      <LanguageStandard>Default</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\dev\boost_1_76_0;src/Models;src/World/Chunk;src/World;src/Utility;src/States;src/Renderer;src/Data;vendor;$(SolutionDir)Dependencies\FastNoise2\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,7 +105,8 @@
     <ClCompile Include="src\Renderer\VertexBuffer.cpp" />
     <ClCompile Include="src\States\PlayingState.cpp" />
     <ClCompile Include="src\States\StateManager.cpp" />
-    <ClCompile Include="src\Utility\Time.cpp" />
+    <ClCompile Include="src\Utility\TimeUtil.cpp" />
+    <ClCompile Include="src\Utility\Vec3Hash.cpp" />
     <ClCompile Include="src\World\Chunk\ChunkManager.cpp" />
     <ClCompile Include="src\World\Chunk\ChunkMeshGenerator.cpp" />
     <ClCompile Include="src\World\Chunk\TerrainGenerator.cpp" />
@@ -129,11 +130,16 @@
     <ClInclude Include="src\States\GameState.h" />
     <ClInclude Include="src\States\PlayingState.h" />
     <ClInclude Include="src\States\StateManager.h" />
-    <ClInclude Include="src\Utility\Time.h" />
+    <ClInclude Include="src\Utility\TimeUtil.h" />
+    <ClInclude Include="src\Utility\UsefulMath.h" />
+    <ClInclude Include="src\Utility\Vec3Hash.h" />
     <ClInclude Include="src\World\Chunk\Chunk.h" />
     <ClInclude Include="src\World\Chunk\ChunkManager.h" />
     <ClInclude Include="src\World\Chunk\ChunkMeshGenerator.h" />
     <ClInclude Include="src\World\Chunk\TerrainGenerator.h" />
+    <ClInclude Include="vendor\boost\container_hash\hash.hpp" />
+    <ClInclude Include="vendor\boost\container_hash\hash_fwd.hpp" />
+    <ClInclude Include="vendor\boost\functional\hash.hpp" />
     <ClInclude Include="vendor\glm\common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_vector_relational.hpp" />

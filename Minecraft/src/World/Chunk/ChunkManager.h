@@ -6,30 +6,66 @@
 #include "glm/glm.hpp"
 
 #include "TerrainGenerator.h"
+#include "ChunkMeshGenerator.h"
+
+#include "Vec3Hash.h"
 
 #include <vector>
+#include <unordered_map>
+#include <iostream>
+
+struct ChunkGenerationPacket
+{
+	glm::ivec3 Coords;
+	bool GenerateBlocks;
+	bool BuildMesh;
+	bool BuildNeighbors;
+};
+
+struct ChunkPair
+{
+	Chunk* Chunk;
+	Mesh* Mesh;
+};
 
 class ChunkManager
 {
 public:
-	ChunkManager();
+	ChunkManager(int x, int y, int z);
 	~ChunkManager();
 	
-	void GenerateMeshes();
-	void GenerateTerrain();
+	void GenerateChunk();
 
-	std::vector<Mesh*> GetMeshes() { return m_Meshes; }
-	bool NeedsGenerating() const { return m_NeedsGenerating; }
+	void LoadChunk(int x, int y, int z);
+	void UnloadChunk(int x, int y, int z);
 
+	void SetMiddleChunk(glm::ivec3 chunk);
+
+	glm::vec3 GetCenterPos() { return m_CenterChunk; }
+
+	Chunk* getChunk(int x, int y, int z) const;
+	Mesh* getMesh(int x, int y, int z) const;
 private:
-	Chunk* getChunk(int x, int y, int z) const { return m_Chunks[x + (z << 3) + (y << 6)]; }
-	Mesh* getMesh(int x, int y, int z) const { return m_Meshes[x + (z << 3) + (y << 6)]; }
+	SurroundingChunks getNeighboringChunks(int x, int y, int z) {
+		return {
+			getChunk(x,     y,     z + 1),
+			getChunk(x,     y,     z - 1),
+			getChunk(x - 1, y,     z),
+			getChunk(x + 1, y,     z),
+			getChunk(x,     y + 1, z),
+			getChunk(x,     y - 1, z)
+		};
+	}
 
+	void GenerateBlocks(Chunk* chunk, int x, int y, int z);
+	bool GenerateMesh(int x, int y, int z);
+
+	bool isLoaded(int x, int y, int z) const;
+	
 	TerrainGenerator m_TerrainGenerator;
 
-	glm::vec3 m_CurrentChunk;
-	bool m_NeedsGenerating;
+	glm::ivec3 m_CenterChunk;
 
-	std::vector<Chunk*> m_Chunks;
-	std::vector<Mesh*> m_Meshes;
+	std::unordered_map<Vec3Hash, ChunkPair> m_Chunks;
+	std::vector<ChunkGenerationPacket> m_ChunksToGenerate;
 };

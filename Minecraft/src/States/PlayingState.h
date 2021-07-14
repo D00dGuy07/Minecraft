@@ -28,17 +28,17 @@ public:
 	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 private:
 	Camera* m_Camera;
+	Camera* m_ResetCamera;
 	
 	Shader* m_Shader;
 	Texture* m_Texture;
 
-	//Chunk* m_Chunk;
-	//RenderInfo* m_RenderInfo;
-
-	//glm::mat4* m_Model;
+	glm::ivec3 m_LastChunk;
 
 	ChunkManager* m_ChunkManager;
 
 	bool m_ShouldCrash = false;
 	bool m_WireFrame = false;
+	bool m_UpdateChunks = true;
+
 };

@@ -12,12 +12,12 @@ void DataLoader::LoadBlocks()
 		MeshType::NONE,
 		true,
 		{
-			glm::vec2(4.0f, 4.0f),
-			glm::vec2(4.0f, 4.0f),
-			glm::vec2(4.0f, 4.0f),
-			glm::vec2(4.0f, 4.0f),
-			glm::vec2(4.0f, 4.0f),
-			glm::vec2(4.0f, 4.0f),
+			glm::ivec2(4, 4),
+			glm::ivec2(4, 4),
+			glm::ivec2(4, 4),
+			glm::ivec2(4, 4),
+			glm::ivec2(4, 4),
+			glm::ivec2(4, 4),
 		}
 	});
 
@@ -27,12 +27,12 @@ void DataLoader::LoadBlocks()
 		MeshType::CUBE,
 		false,
 		{
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(0.0f, 0.0f),
-			glm::vec2(1.0f, 0.0f),
-			glm::vec2(2.0f, 0.0f),
+			glm::ivec2(0, 0),
+			glm::ivec2(0, 0),
+			glm::ivec2(0, 0),
+			glm::ivec2(0, 0),
+			glm::ivec2(1, 0),
+			glm::ivec2(2, 0),
 		}
 	});
 
@@ -42,12 +42,12 @@ void DataLoader::LoadBlocks()
 		MeshType::CUBE,
 		false,
 		{
-			glm::vec2(2.0f, 0.0f),
-			glm::vec2(2.0f, 0.0f),
-			glm::vec2(2.0f, 0.0f),
-			glm::vec2(2.0f, 0.0f),
-			glm::vec2(2.0f, 0.0f),
-			glm::vec2(2.0f, 0.0f),
+			glm::ivec2(2, 0),
+			glm::ivec2(2, 0),
+			glm::ivec2(2, 0),
+			glm::ivec2(2, 0),
+			glm::ivec2(2, 0),
+			glm::ivec2(2, 0),
 		}
 	});
 
@@ -57,12 +57,12 @@ void DataLoader::LoadBlocks()
 		MeshType::CUBE,
 		false,
 		{
-			glm::vec2(3.0f, 0.0f),
-			glm::vec2(3.0f, 0.0f),
-			glm::vec2(3.0f, 0.0f),
-			glm::vec2(3.0f, 0.0f),
-			glm::vec2(3.0f, 0.0f),
-			glm::vec2(3.0f, 0.0f),
+			glm::ivec2(3, 0),
+			glm::ivec2(3, 0),
+			glm::ivec2(3, 0),
+			glm::ivec2(3, 0),
+			glm::ivec2(3, 0),
+			glm::ivec2(3, 0),
 		}
 	});
 
@@ -72,12 +72,12 @@ void DataLoader::LoadBlocks()
 		MeshType::CUBE,
 		false,
 		{
-			glm::vec2(5.0f, 0.0f),
-			glm::vec2(5.0f, 0.0f),
-			glm::vec2(5.0f, 0.0f),
-			glm::vec2(5.0f, 0.0f),
-			glm::vec2(5.0f, 0.0f),
-			glm::vec2(5.0f, 0.0f),
+			glm::ivec2(5, 0),
+			glm::ivec2(5, 0),
+			glm::ivec2(5, 0),
+			glm::ivec2(5, 0),
+			glm::ivec2(5, 0),
+			glm::ivec2(5, 0),
 		}
 	});
 
@@ -87,12 +87,12 @@ void DataLoader::LoadBlocks()
 		MeshType::CUBE,
 		false,
 		{
-			glm::vec2(4.0f, 0.0f),
-			glm::vec2(4.0f, 0.0f),
-			glm::vec2(4.0f, 0.0f),
-			glm::vec2(4.0f, 0.0f),
-			glm::vec2(4.0f, 0.0f),
-			glm::vec2(4.0f, 0.0f),
+			glm::ivec2(4, 0),
+			glm::ivec2(4, 0),
+			glm::ivec2(4, 0),
+			glm::ivec2(4, 0),
+			glm::ivec2(4, 0),
+			glm::ivec2(4, 0),
 		}
 	});
 }

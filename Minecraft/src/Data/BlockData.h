@@ -7,12 +7,12 @@
 
 struct FaceTextures
 {
-	glm::vec2 Front;
-	glm::vec2 Right;
-	glm::vec2 Left;
-	glm::vec2 Back;
-	glm::vec2 Top;
-	glm::vec2 Bottom;
+	glm::ivec2 Front;
+	glm::ivec2 Right;
+	glm::ivec2 Left;
+	glm::ivec2 Back;
+	glm::ivec2 Top;
+	glm::ivec2 Bottom;
 };
 
 enum class MeshType {

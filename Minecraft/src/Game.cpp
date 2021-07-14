@@ -9,7 +9,7 @@
 #include "StateManager.h"
 
 // Utility Includes
-#include "Time.h"
+#include "TimeUtil.h"
 
 // Renderer Includes
 #include "TextureAtlas.h"

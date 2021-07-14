@@ -33,7 +33,7 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 				int blockY = y + (chunkY * CHUNK_SIZE);
 				int blockZ = z + (chunkZ * CHUNK_SIZE);
 
-				if (data.Mesh == MeshType::CUBE && (neighbors.Front == NO_BLOCK || BlockData::getBlockData(neighbors.Front).Transparent == true))
+				if (neighbors.Front != NO_BLOCK && data.Mesh == MeshType::CUBE && (BlockData::getBlockData(neighbors.Front).Transparent == true))
 				{
 					hasData = true;
 					addFace(
@@ -45,7 +45,7 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 						data.Textures.Front.x, data.Textures.Front.y
 					);
 				}
-				if (data.Mesh == MeshType::CUBE && (neighbors.Back == NO_BLOCK || BlockData::getBlockData(neighbors.Back).Transparent == true))
+				if (neighbors.Back != NO_BLOCK && data.Mesh == MeshType::CUBE && (BlockData::getBlockData(neighbors.Back).Transparent == true))
 				{
 					hasData = true;
 					addFace(
@@ -57,7 +57,7 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 						data.Textures.Back.x, data.Textures.Back.y
 					);
 				}
-				if (data.Mesh == MeshType::CUBE && (neighbors.Left == NO_BLOCK || BlockData::getBlockData(neighbors.Left).Transparent == true))
+				if (neighbors.Left != NO_BLOCK && data.Mesh == MeshType::CUBE && (BlockData::getBlockData(neighbors.Left).Transparent == true))
 				{
 					hasData = true;
 					addFace(
@@ -69,7 +69,7 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 						data.Textures.Left.x, data.Textures.Left.y
 					);
 				}
-				if (data.Mesh == MeshType::CUBE && (neighbors.Right == NO_BLOCK || BlockData::getBlockData(neighbors.Right).Transparent == true))
+				if (neighbors.Right != NO_BLOCK && data.Mesh == MeshType::CUBE && (BlockData::getBlockData(neighbors.Right).Transparent == true))
 				{
 					hasData = true;
 					addFace(
@@ -81,7 +81,7 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 						data.Textures.Right.x, data.Textures.Right.y
 					);
 				}
-				if (data.Mesh == MeshType::CUBE && (neighbors.Top == NO_BLOCK || BlockData::getBlockData(neighbors.Top).Transparent == true))
+				if (neighbors.Top != NO_BLOCK && data.Mesh == MeshType::CUBE && (BlockData::getBlockData(neighbors.Top).Transparent == true))
 				{
 					hasData = true;
 					addFace(
@@ -93,7 +93,7 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 						data.Textures.Top.x, data.Textures.Top.y
 					);
 				}
-				if (data.Mesh == MeshType::CUBE && (neighbors.Bottom == NO_BLOCK || BlockData::getBlockData(neighbors.Bottom).Transparent == true))
+				if (neighbors.Bottom != NO_BLOCK && data.Mesh == MeshType::CUBE && (BlockData::getBlockData(neighbors.Bottom).Transparent == true))
 				{
 					hasData = true;
 					addFace(
@@ -134,12 +134,12 @@ bool ChunkMeshGenerator::generateChunkMesh(Mesh& mesh, const Chunk& chunk, Surro
 SurroundingBlocks ChunkMeshGenerator::getSurroundingBlocks(const int& x, const int& y, const int& z, const Chunk& chunk, const SurroundingChunks& surroundingChunks)
 {
 	return {
-		(z - 1 >= 0) ? chunk.getBlock(x, y, z - 1) : (surroundingChunks.Front  != nullptr) ? surroundingChunks.Front-> getBlock(x, y, 31) : NO_BLOCK,
-		(z + 1 < 32) ? chunk.getBlock(x, y, z + 1) : (surroundingChunks.Back   != nullptr) ? surroundingChunks.Back->  getBlock(x, y,  0) : NO_BLOCK,
-		(x - 1 >= 0) ? chunk.getBlock(x - 1, y, z) : (surroundingChunks.Left   != nullptr) ? surroundingChunks.Left->  getBlock(31, y, z) : NO_BLOCK,
-		(x + 1 < 32) ? chunk.getBlock(x + 1, y, z) : (surroundingChunks.Right  != nullptr) ? surroundingChunks.Right-> getBlock( 0, y, z) : NO_BLOCK,
-		(y + 1 < 32) ? chunk.getBlock(x, y + 1, z) : (surroundingChunks.Top    != nullptr) ? surroundingChunks.Top->   getBlock(x,  0, z) : NO_BLOCK,
-		(y - 1 >= 0) ? chunk.getBlock(x, y - 1, z) : (surroundingChunks.Bottom != nullptr) ? surroundingChunks.Bottom->getBlock(x, 31, z) : NO_BLOCK
+		(z + 1 < 32) ? chunk.getBlock(x, y, z + 1) : (surroundingChunks.Front  != nullptr) ? surroundingChunks.Front-> getBlock( x,  y,  0) : NO_BLOCK,
+		(z - 1 >= 0) ? chunk.getBlock(x, y, z - 1) : (surroundingChunks.Back   != nullptr) ? surroundingChunks.Back->  getBlock( x,  y, 31) : NO_BLOCK,
+		(x - 1 >= 0) ? chunk.getBlock(x - 1, y, z) : (surroundingChunks.Left   != nullptr) ? surroundingChunks.Left->  getBlock(31,  y,  z) : NO_BLOCK,
+		(x + 1 < 32) ? chunk.getBlock(x + 1, y, z) : (surroundingChunks.Right  != nullptr) ? surroundingChunks.Right-> getBlock( 0,  y,  z) : NO_BLOCK,
+		(y + 1 < 32) ? chunk.getBlock(x, y + 1, z) : (surroundingChunks.Top    != nullptr) ? surroundingChunks.Top->   getBlock( x,  0,  z) : NO_BLOCK,
+		(y - 1 >= 0) ? chunk.getBlock(x, y - 1, z) : (surroundingChunks.Bottom != nullptr) ? surroundingChunks.Bottom->getBlock( x, 31,  z) : NO_BLOCK
 	};
 }
 
@@ -161,10 +161,10 @@ void ChunkMeshGenerator::addFace(
 	case FaceType::FRONT:
 	{
 		std::array<float, 24> verts = {
-			x + -0.5f, y +  0.5f, z + -0.5f, texCoords.v3.x, texCoords.v3.y, 0.86f, // 3
-			x +  0.5f, y +  0.5f, z + -0.5f, texCoords.v2.x, texCoords.v2.y, 0.86f, // 2
-			x +  0.5f, y + -0.5f, z + -0.5f, texCoords.v1.x, texCoords.v1.y, 0.86f, // 1
-			x + -0.5f, y + -0.5f, z + -0.5f, texCoords.v0.x, texCoords.v0.y, 0.86f  // 0
+			x +  0.5f, y +  0.5f, z +  0.5f, texCoords.v3.x, texCoords.v3.y, 0.7f, // 3
+			x + -0.5f, y +  0.5f, z +  0.5f, texCoords.v2.x, texCoords.v2.y, 0.7f, // 2
+			x + -0.5f, y + -0.5f, z +  0.5f, texCoords.v1.x, texCoords.v1.y, 0.7f, // 1
+			x +  0.5f, y + -0.5f, z +  0.5f, texCoords.v0.x, texCoords.v0.y, 0.7f  // 0
 		};
 
 		vertices.insert(vertices.end(), verts.begin(), verts.end());
@@ -174,10 +174,10 @@ void ChunkMeshGenerator::addFace(
 	case FaceType::BACK:
 	{
 		std::array<float, 24> verts = {
-			x +  0.5f, y +  0.5f, z +  0.5f, texCoords.v3.x, texCoords.v3.y, 0.7f, // 3
-			x + -0.5f, y +  0.5f, z +  0.5f, texCoords.v2.x, texCoords.v2.y, 0.7f, // 2
-			x + -0.5f, y + -0.5f, z +  0.5f, texCoords.v1.x, texCoords.v1.y, 0.7f, // 1
-			x +  0.5f, y + -0.5f, z +  0.5f, texCoords.v0.x, texCoords.v0.y, 0.7f  // 0
+			x + -0.5f, y +  0.5f, z + -0.5f, texCoords.v3.x, texCoords.v3.y, 0.86f, // 3
+			x +  0.5f, y +  0.5f, z + -0.5f, texCoords.v2.x, texCoords.v2.y, 0.86f, // 2
+			x +  0.5f, y + -0.5f, z + -0.5f, texCoords.v1.x, texCoords.v1.y, 0.86f, // 1
+			x + -0.5f, y + -0.5f, z + -0.5f, texCoords.v0.x, texCoords.v0.y, 0.86f  // 0
 		};
 
 		vertices.insert(vertices.end(), verts.begin(), verts.end());
@@ -190,7 +190,7 @@ void ChunkMeshGenerator::addFace(
 			x + -0.5f, y +  0.5f, z +  0.5f, texCoords.v3.x, texCoords.v3.y, 0.8f, // 3
 			x + -0.5f, y +  0.5f, z + -0.5f, texCoords.v2.x, texCoords.v2.y, 0.8f, // 2
 			x + -0.5f, y + -0.5f, z + -0.5f, texCoords.v1.x, texCoords.v1.y, 0.8f, // 1
-			x + -0.5f, y + -0.5f, z +  0.5f, texCoords.v0.x, texCoords.v0.y, 0.8f // 0
+			x + -0.5f, y + -0.5f, z +  0.5f, texCoords.v0.x, texCoords.v0.y, 0.8f  // 0
 		};
 
 		vertices.insert(vertices.end(), verts.begin(), verts.end());
@@ -203,7 +203,7 @@ void ChunkMeshGenerator::addFace(
 			x +  0.5f, y +  0.5f, z + -0.5f, texCoords.v3.x, texCoords.v3.y, 0.75f, // 3
 			x +  0.5f, y +  0.5f, z +  0.5f, texCoords.v2.x, texCoords.v2.y, 0.75f, // 2
 			x +  0.5f, y + -0.5f, z +  0.5f, texCoords.v1.x, texCoords.v1.y, 0.75f, // 1
-			x +  0.5f, y + -0.5f, z + -0.5f, texCoords.v0.x, texCoords.v0.y, 0.75f // 0
+			x +  0.5f, y + -0.5f, z + -0.5f, texCoords.v0.x, texCoords.v0.y, 0.75f  // 0
 		};
 
 		vertices.insert(vertices.end(), verts.begin(), verts.end());
@@ -239,8 +239,8 @@ void ChunkMeshGenerator::addFace(
 	}
 
 	std::array<unsigned int, 6> _indices = {
-			verticesSize + 0, verticesSize + 1, verticesSize + 2,
-			verticesSize + 2, verticesSize + 3, verticesSize + 0
+			(unsigned int)(verticesSize + 0), (unsigned int)(verticesSize + 1), (unsigned int)(verticesSize + 2),
+			(unsigned int)(verticesSize + 2), (unsigned int)(verticesSize + 3), (unsigned int)(verticesSize + 0)
 	};
 
 	verticesSize += 4;
