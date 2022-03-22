@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<Main>
+	<Frame ID="frame"
+		   HorizontalBias="1/2" VerticalBias="1/2" ZIndex="1"
+		   Fill="#33CC22" Roundness="10" Alpha="0.5">
+		<Size>
+			<ScaleSize Type="Width" Value="0.2"/>
+			<AspectSize Type="Height" Value="1"/>
+		</Size>
+
+		<Constraints>
+			<SpringConstraint Side="Top" Target="Window" TargetSide="Top"/>
+			<SpringConstraint Side="Bottom" Target="Window" TargetSide="Bottom"/>
+			<SpringConstraint Side="Left" Target="Window" TargetSide="Left"/>
+			<SpringConstraint Side="Right" Target="Window" TargetSide="Right"/>
+		</Constraints>
+	</Frame>
+
+	<Frame ID="frame1"
+		   HorizontalBias="0.6" VerticalBias="1/2" ZIndex="2"
+		   Fill="#CC3322" Roundness="40">
+		<Size>
+			<ScaleSize Type="Width" Value="0.2"/>
+			<AspectSize Type="Height" Value="1"/>
+		</Size>
+
+		<Constraints>
+			<SpringConstraint Side="Top" Target="Window" TargetSide="Top"/>
+			<SpringConstraint Side="Bottom" Target="Window" TargetSide="Bottom"/>
+			<SpringConstraint Side="Left" Target="Window" TargetSide="Left"/>
+			<SpringConstraint Side="Right" Target="Window" TargetSide="Right"/>
+		</Constraints>
+	</Frame>
+
+	<Frame ID="frame2"
+		   HorizontalBias="0.4" VerticalBias="1/2" ZIndex="3"
+		   Fill="#2233cc" Roundness="0">
+		<Size>
+			<ScaleSize Type="Width" Value="0.2"/>
+			<AspectSize Type="Height" Value="1"/>
+		</Size>
+
+		<Constraints>
+			<SpringConstraint Side="Top" Target="Window" TargetSide="Top"/>
+			<SpringConstraint Side="Bottom" Target="Window" TargetSide="Bottom"/>
+			<SpringConstraint Side="Left" Target="Window" TargetSide="Left"/>
+			<SpringConstraint Side="Right" Target="Window" TargetSide="Right"/>
+		</Constraints>
+	</Frame>
+</Main>
